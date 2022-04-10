@@ -5,10 +5,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Write a description of class StudentMarks here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * This class reads the information of students, their last name, first name, student id,
+ * marks of assigment 1, marks of assigment 2 and marks of assigment 3.
+ * Then calculate their total marks, find the failed students, find top 10 heiest 
+ * @author (Sanduni Dissanayake)
+ * @version (02-04-2022)
  */
 public class StudentMarks
 {
@@ -20,7 +21,7 @@ public class StudentMarks
     private ArrayList<Double> assessment2;
     private ArrayList<Double> assessment3;
     private ArrayList<Double> totalMarks;
-    private ArrayList<Double> highestMarks;
+    private ArrayList<String> highestMarks;
     private String line;
     private String[] tokens;
     private  int option;
@@ -42,6 +43,7 @@ public class StudentMarks
         assessment2=new ArrayList<Double>();
         assessment3=new ArrayList<Double>();
         totalMarks=new ArrayList<Double>();
+        highestMarks=new ArrayList<>();
     }
     
         public void readFile(){
@@ -161,10 +163,16 @@ public class StudentMarks
     }
     
     public void topTenStudents(){
-        Collections.sort(totalMarks);
-        for(int i=0;i<totalMarks.size();i++){
-            System.out.println("The BMI of "+firstName.get(i)+" is "+totalMarks.get(i));
+        //Collections.sort(totalMarks);
+        System.out.println("dada");
+        int i = 0;
+        for(String name : firstName) {
+            //System.out.println(totalMarks.get(i) + " " +firstName.get(i)+"  "+ lastName.get(i)+"  "+studentId.get(i));
+            highestMarks.add(totalMarks.get(i) + " " +firstName.get(i)+"  "+ lastName.get(i)+"  "+studentId.get(i));
+            i++;
         }
+        Collections.sort(highestMarks);
+        System.out.println(highestMarks);
         //highestMarks = list.subList(list.size() -3, list.size())
     }
     
@@ -173,7 +181,8 @@ public class StudentMarks
         System.out.println("Please select one of the options below: ");
         System.out.println("1: Show All Student Marks");
         System.out.println("2: Show Failed Students");
-        System.out.println("3: Quit");
+        System.out.println("3: Show height Mark Students");
+        System.out.println("4: Quit");
     }
 
     public void getMenuOption(){
@@ -189,10 +198,13 @@ public class StudentMarks
                     getFailStudents();
                     j++;
                 }else if(option == 3){
+                    topTenStudents();
+                    j++;
+                }else if(option == 4){
                     System.exit(0);
                     j++;
                 }else{
-                    System.out.println("incorrect number range, please type 1,2 or 3");
+                    System.out.println("incorrect number range, please type 1,2,3 or 4");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("incorrect number, please type the intiger");

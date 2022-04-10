@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=StudentMarks
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ StudentMarks\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ This\ class\ reads\ the\ information\ of\ students,\ their\ last\ name,\ first\ name,\ student\ id,\r\n\ marks\ of\ assigment\ 1,\ marks\ of\ assigment\ 2\ and\ marks\ of\ assigment\ 3.\r\n\ Then\ calculate\ their\ total\ marks,\ find\ the\ failed\ students,\ find\ top\ 10\ heiest\ \r\n\ @author\ (Sanduni\ Dissanayake)\r\n\ @version\ (02-04-2022)\r\n
 comment1.params=
 comment1.target=StudentMarks()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ People\r\n
