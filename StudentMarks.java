@@ -23,7 +23,7 @@ public class StudentMarks
     private ArrayList<Double> assessment2;
     private ArrayList<Double> assessment3;
     private ArrayList<Double> totalMarks;
-    private ArrayList<String> highestMarks;
+    private ArrayList<String> studentRecord;
     private String line;
     private String[] tokens;
     private  int option;
@@ -43,7 +43,7 @@ public class StudentMarks
         assessment2=new ArrayList<Double>();
         assessment3=new ArrayList<Double>();
         totalMarks=new ArrayList<Double>();
-        highestMarks=new ArrayList<>();
+        studentRecord =new ArrayList<>();
     }
     
         /**
@@ -211,7 +211,7 @@ public class StudentMarks
                 cutoffMarks = Double.parseDouble(in.nextLine());
                 for(int i=0;i<firstName.size();i++){
                     if(cutoffMarks > totalMarks.get(i)){
-                       System.out.println("Total marks of the fail "+firstName.get(i)+"  "+lastName.get(i)+"  "+studentId.get(i)+" : "+totalMarks.get(i));
+                       System.out.println("Total marks of the failed student - "+firstName.get(i)+"  "+lastName.get(i)+"  "+studentId.get(i)+" : "+totalMarks.get(i));
                     }
                 }
                 j++;
@@ -231,18 +231,18 @@ public class StudentMarks
     public void topTenStudents(){
         int i = 0;
         for(String name : firstName) {
-            highestMarks.add(totalMarks.get(i) + " " +firstName.get(i)+"  "+ lastName.get(i)+"  "+studentId.get(i));
+            studentRecord.add(totalMarks.get(i) + " " +firstName.get(i)+"  "+ lastName.get(i)+"  "+studentId.get(i));
             i++;
         }
         System.out.println("*************Top 10 Students with Lowest Marks***********");
-        Collections.sort(highestMarks);
+        Collections.sort(studentRecord);
         for(int x=0;x<10;x++){
-            System.out.println(highestMarks.get(x));
+            System.out.println(studentRecord.get(x));
         }
         System.out.println("*************Top 10 Students with Heighest Marks***********");
-        Collections.sort(highestMarks,Collections.reverseOrder());
+        Collections.sort(studentRecord,Collections.reverseOrder());
         for(int x=0;x<10;x++){
-            System.out.println(highestMarks.get(x));
+            System.out.println(studentRecord.get(x));
         }
     }
     
