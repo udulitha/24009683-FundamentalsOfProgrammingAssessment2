@@ -7,12 +7,14 @@ import java.util.Collections;
 /**
  * This class reads the information of students, their last name, first name, student id,
  * marks of assigment 1, marks of assigment 2 and marks of assigment 3.
- * Then calculate their total marks, find the failed students, find top 10 heiest 
+ * Then calculate their total marks, find the failed students, find top 10 heighest marks students and lowest marks students.
+ * 
  * @author (Sanduni Dissanayake)
  * @version (02-04-2022)
  */
 public class StudentMarks
 {
+    //Instance variables
     private String unitName;
     private ArrayList<String> firstName;
     private ArrayList<String> lastName;
@@ -27,15 +29,13 @@ public class StudentMarks
     private  int option;
     private double cutoffMarks;
     private boolean exit;
-    
-    //private final int NUMBER_OF_ASSIGNMENTS=3;
 
     /**
      * Constructor for objects of class People
      */
     public StudentMarks()
     {
-        // initialise instance variables
+        // Initialise instance variables
         firstName=new ArrayList<>();
         lastName=new ArrayList<>();
         studentId=new ArrayList<>();
@@ -46,20 +46,22 @@ public class StudentMarks
         highestMarks=new ArrayList<>();
     }
     
-        public void readFile(){
+        /**
+         * Method readFile
+         * This method reads dat fron CSV file
+         * 
+         */
+        public void readFile(){    
         int countLines=0; 
         try{
             File myFile=new File("prog5001_students_grade_2022.CSV");
             Scanner myScanner=new Scanner(myFile);
-            
             while(myScanner.hasNextLine()){
                 line=myScanner.nextLine();
-                
                 countLines++;
                 tokens = line.split(",");
                 if(countLines == 1){
-                   getUnitName();
-                   
+                   getUnitName();   
                 }else if(countLines > 2) {
                      getLastName();
                      getFirstName();
@@ -76,22 +78,51 @@ public class StudentMarks
         }
     }
     
+    /**
+     * Method getUnitName
+     * This method gets data of the first row and first colum from the file
+     *
+     */
     public void getUnitName(){
         unitName = (tokens[0]);
     }
     
+    /**
+     * Method getLastName
+     * This method adds all the first items from the file
+     * to the lastName collection
+     *
+     */
     public void getLastName(){
         firstName.add(tokens[0]);
     }
     
+    /**
+     * Method getFirstName
+     * This method adds all the scecond items from the file
+     * to the firstName collection
+     *
+     */
     public void getFirstName(){
         lastName.add(tokens[1]);
     }
     
-     public void getStudentId(){
+    /**
+     * Method getStudentId
+     * This method adds all the third items from the file
+     * to the studentId collection
+     *
+     */
+    public void getStudentId(){
         studentId.add(tokens[2]);
     }
     
+    /**
+     * Method getAssessment1Marks
+     * This method adds all the fourth items from the file
+     * to the assessment1 collection
+     *
+     */
     public void getAssessment1Marks(){
         if(tokens.length >= 4){
             if(tokens[3].equals("")){
@@ -103,6 +134,12 @@ public class StudentMarks
         }
     }
     
+    /**
+     * Method getAssessment2Marks
+     * This method adds all the fifth items from the file
+     * to the assessment2 collection
+     *
+     */
     public void getAssessment2Marks(){
         if(tokens.length >= 5){
             if(tokens[4].equals("")){
@@ -114,6 +151,11 @@ public class StudentMarks
         }
     }
     
+    /**
+     * Method getAssessment3Marks
+     * This method adds all the sixth items from the file to the assessment3 collection
+     *
+     */
     public void getAssessment3Marks(){
         if(tokens.length >= 6){
             if(tokens[5].equals("")){
@@ -125,6 +167,12 @@ public class StudentMarks
         }
     }
     
+    /**
+     * Method calculateTotalMarks
+     * This method calculates the total marks of each student in the collection, 
+     * total marks formula is Total= assessment1 marks+assesstmet2 marks+assessment3 marks
+     *
+     */
     public void calculateTotalMarks(){
         int i = 0;
         for(String name : firstName) {
@@ -133,14 +181,27 @@ public class StudentMarks
         }
     }
     
+    /**
+     * Method printStudentMarks
+     * This method prints the each assessment marks and total marks of each person
+     * in the collection
+     *
+     */
     public void printStudentMarks(){
         int i = 0;
         for(String name : firstName) {
-            System.out.println(firstName.get(i)+"  "+lastName.get(i)+"  "+studentId.get(i)+"  "+assessment1.get(i)+"  "+assessment2.get(i)+"  "+assessment3.get(i)+"  Total marks of the "+lastName.get(i)+" : "+totalMarks.get(i));
+            System.out.println(firstName.get(i)+"  "+lastName.get(i)+"  "+studentId.get(i)+"  "+assessment1.get(i)+"  "+assessment2.get(i)+"  "
+            +assessment3.get(i)+"  Total marks of the "+lastName.get(i)+" : "+totalMarks.get(i));
              i++;
         }
     }
     
+    /**
+     * Method getFailStudents
+     * This method finds failed students and prints names, student id and total marks   
+     * of the failed students in the collection
+     *
+     */
     public void getFailStudents(){
         int j=0;
         while(j<1){
@@ -157,25 +218,28 @@ public class StudentMarks
             } catch (NumberFormatException e) {
                 System.out.println("Incorrect value, please type a number");
             }
-            
         } 
-        
     }
     
+    /**
+     * Method topTenStudents
+     * This method sort the students in ascending order and descending order 
+     * to find and print top 10 students with lowest marks and top 10 students with heighest marks 
+     * in the collection
+     * 
+     */
     public void topTenStudents(){
-        System.out.println("dada");
         int i = 0;
         for(String name : firstName) {
             highestMarks.add(totalMarks.get(i) + " " +firstName.get(i)+"  "+ lastName.get(i)+"  "+studentId.get(i));
             i++;
         }
-        System.out.println("*************Lowest Marks***********");
+        System.out.println("*************Top 10 Students with Lowest Marks***********");
         Collections.sort(highestMarks);
         for(int x=0;x<10;x++){
             System.out.println(highestMarks.get(x));
         }
-        
-        System.out.println("*************Heighest Marks***********");
+        System.out.println("*************Top 10 Students with Heighest Marks***********");
         Collections.sort(highestMarks,Collections.reverseOrder());
         for(int x=0;x<10;x++){
             System.out.println(highestMarks.get(x));
@@ -187,16 +251,25 @@ public class StudentMarks
         System.out.println("Please select one of the options below: ");
         System.out.println("1: Show All Student Marks");
         System.out.println("2: Show Failed Students");
-        System.out.println("3: Show height Mark Students");
+        System.out.println("3: Show Top 10 Students with Lowest/heighest marks");
         System.out.println("4: Quit");
     }
 
+    /**
+     * Method getMenuOption
+     * This method shows a menu to user to select methods 
+     * to find all marks of each students, failed students,
+     * top 10 students with lowest marks and heghest marks
+     * in the collection
+     *
+     */
     public void getMenuOption(){
         int j=0;
         while(j<1){
             try {
-                 Scanner userOption=new Scanner(System.in);
-                 option = Integer.parseInt(userOption.nextLine());
+                System.out.println("**********************Welcome to Student's Marks Caluculation Application*****************"); 
+                Scanner userOption=new Scanner(System.in);
+                option = Integer.parseInt(userOption.nextLine());
                  if(option == 1){
                     printStudentMarks();
                     j++;
@@ -218,6 +291,10 @@ public class StudentMarks
         }
     }
 
+    /**
+     * Method run
+     *
+     */
     public void run(){
         readFile();
         calculateTotalMarks();
@@ -230,9 +307,13 @@ public class StudentMarks
     }
 
    
+    /**
+     * Method main
+     *
+     * @param args A parameter
+     */
     public static void main(String[] args){
         StudentMarks myObj=new StudentMarks();
         myObj.run();
-        
     }
 }
