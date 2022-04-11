@@ -163,17 +163,23 @@ public class StudentMarks
     }
     
     public void topTenStudents(){
-        //Collections.sort(totalMarks);
         System.out.println("dada");
         int i = 0;
         for(String name : firstName) {
-            //System.out.println(totalMarks.get(i) + " " +firstName.get(i)+"  "+ lastName.get(i)+"  "+studentId.get(i));
             highestMarks.add(totalMarks.get(i) + " " +firstName.get(i)+"  "+ lastName.get(i)+"  "+studentId.get(i));
             i++;
         }
+        System.out.println("*************Lowest Marks***********");
         Collections.sort(highestMarks);
-        System.out.println(highestMarks);
-        //highestMarks = list.subList(list.size() -3, list.size())
+        for(int x=0;x<10;x++){
+            System.out.println(highestMarks.get(x));
+        }
+        
+        System.out.println("*************Heighest Marks***********");
+        Collections.sort(highestMarks,Collections.reverseOrder());
+        for(int x=0;x<10;x++){
+            System.out.println(highestMarks.get(x));
+        }
     }
     
     public void displayMenu(){
