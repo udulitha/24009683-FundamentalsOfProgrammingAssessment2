@@ -48,7 +48,7 @@ public class StudentMarks
     
         /**
          * Method readFile
-         * This method reads dat fron CSV file
+         * This method reads data from CSV file
          * 
          */
         public void readFile(){    
