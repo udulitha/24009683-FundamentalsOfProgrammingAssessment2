@@ -209,9 +209,10 @@ public class StudentMarks
                 Scanner in = new Scanner(System.in);
                 System.out.println("Input the cuttoff mark:");
                 cutoffMarks = Double.parseDouble(in.nextLine());
+                System.out.println("*************Failed Studens*************");
                 for(int i=0;i<firstName.size();i++){
                     if(cutoffMarks > totalMarks.get(i)){
-                       System.out.println("Total marks of the failed student - "+firstName.get(i)+"  "+lastName.get(i)+"  "+studentId.get(i)+" : "+totalMarks.get(i));
+                       System.out.println(firstName.get(i)+"  "+lastName.get(i)+"  "+studentId.get(i)+" : "+totalMarks.get(i));
                     }
                 }
                 j++;
@@ -279,7 +280,7 @@ public class StudentMarks
                     topTenStudents();
                     j++;
                 }else if(option == 4){
-                    System.exit(0);
+                    exit = true;
                     j++;
                 }else{
                     System.out.println("incorrect number range, please type 1,2,3 or 4");
@@ -299,12 +300,11 @@ public class StudentMarks
     public void run(){
         readFile();
         calculateTotalMarks();
-        exit = true;
-        while(exit){
+        exit = false;
+        while(!exit){
             displayMenu();
             getMenuOption();
         }
-
     }
 
    
