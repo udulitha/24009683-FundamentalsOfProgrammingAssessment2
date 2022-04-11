@@ -267,7 +267,6 @@ public class StudentMarks
         int j=0;
         while(j<1){
             try {
-                System.out.println("**********************Welcome to Student's Marks Caluculation Application*****************"); 
                 Scanner userOption=new Scanner(System.in);
                 option = Integer.parseInt(userOption.nextLine());
                  if(option == 1){
@@ -293,6 +292,8 @@ public class StudentMarks
 
     /**
      * Method run
+     * This method calls readFile() method, calculateTotalMarks() method,
+     * while runing the displayMenu() and getMenuOption methods
      *
      */
     public void run(){
